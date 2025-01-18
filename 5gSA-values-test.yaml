@@ -78,3 +78,67 @@ mongodb:
     tag: 7.0.4
     pullPolicy: IfNotPresent
     debug: true
+
+# trying to set up multiple UPFs:
+
+#smf:
+#  config:
+#    session:
+#      - subnet: 10.45.0.1/16
+#        dnn: internet
+#      - subnet: 10.46.0.1/16
+#        dnn: internet2
+#    upf:
+#      pfcp:
+#    pfcp:
+#      client:
+#        upf:
+#          - address: 127.0.0.7
+#            dnn: internet
+#          - address: 127.0.0.8
+#            dnn: internet2
+#    pcrf:
+#      enabled: false
+
+upf:
+  config:
+    pfcp:
+      server:
+        - address: 127.0.0.7
+      client:
+        smf:
+          - address: 127.0.0.4
+#    session:
+#      - address: 10.45.0.1/16
+#        dnn: internet
+#        dev: ogstun
+    session:
+      - subnet: 10.45.0.0/16
+        gateway: 10.45.0.1
+        dnn: internet
+      - subnet: 2001:db8:cafe::/48
+        dnn: internet
+        dev: ogstun2
+      - subnet: 10.46.0.0/16
+        gateway: 10.46.0.1
+        dnn: ims
+        dev: ogstun3
+      - subnet: 2001:db8:babe::/48
+        dnn: ims
+        dev: ogstun3
+
+upf-2:
+  config:
+    pfcp:
+      server:
+        - address: 127.0.0.8
+      client:
+        smf:
+          - address: 127.0.0.4
+    session:
+      - address: 10.45.0.2/16
+        dnn: internet
+        dev: ogstun2
+#      - addr: 10.45.0.2/16
+#        dnn: internet
+#        dev: ogstun2

@@ -1,0 +1,184 @@
+hss:
+  enabled: false
+
+mme:
+  enabled: false
+
+pcrf:
+  enabled: false
+
+sgwc:
+  enabled: false
+
+sgwu:
+  enabled: false
+
+amf:
+  config:
+#    logLevel: debug
+    guamiList:
+      - plmn_id:
+          mcc: "999"  # <=
+          mnc: "70"  # <=
+        amf_id:
+          region: 2
+          set: 1
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        amf_id:
+          region: 2
+          set: 1
+    taiList:
+      - plmn_id:
+          mcc: "999"  # <=
+          mnc: "70"  # <=
+        tac: [1]
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+    plmnList:
+      - plmn_id:
+          mcc: "999"  # <=
+          mnc: "70"  # <=
+        s_nssai:
+          - sst: 1
+            sd: "0x111111"
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        s_nssai:
+          - sst: 1
+            sd: "0x111110"
+
+nssf:
+  config:
+    nsiList:
+      - uri: ""
+        sst: 1
+        sd: "0x111111"
+      - uri: ""
+        sst: 1
+        sd: "0x111110"
+
+webui:
+  ingress:
+    enabled: false
+  image:
+    registry: docker.io
+    repository: ujemnadelta/open5gs-webui
+    tag: 2.7.2-arm64
+    pullPolicy: Always
+
+populate:
+  enabled: true  # <=
+  initCommands:
+  - open5gs-dbctl add_ue_with_slice 999700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000002 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000003 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000005 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000006 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000007 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000008 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000009 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000010 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000011 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000012 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000013 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000014 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000015 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000016 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000017 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000018 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+#  - open5gs-dbctl add_ue_with_slice 999700000000019 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add_ue_with_slice 999700000000020 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet2 1 111110
+#  - open5gs-dbctl add 001010000000003 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000005 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000006 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000007 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000008 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000009 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000010 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#  - open5gs-dbctl add 001010000000011 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+
+mongodb:
+  enabled: false
+  auth:
+    enabled: false
+  image:
+    registry: docker.io
+    repository: ujemnadelta/mongodb-rbpi
+    tag: 7.0.4
+    pullPolicy: IfNotPresent
+    debug: true
+
+# setting up multiple UPFs:
+
+smf:
+  config:
+#    logLevel: debug
+    subnetList:
+      - subnet: 10.45.0.1/26
+        dnn: internet
+      - subnet: 10.45.0.65/26
+        dnn: internet2
+# changed the /open5gs/open5gs/charts/open5gs-smf/resources/config/smf.yaml file to enable below configuration to work:
+#    pfcp:
+#      server:
+#        - address: open5gs-smf-pfcp
+#      client:
+#        upf:
+#          - address: open5gs-upf-pfcp
+#          - address: open5gs-upf2-pfcp
+    pcrf:
+      enabled: false
+
+upf:
+  config:
+#    logLevel: debug
+#    upf:
+#      pfcp:
+#        server:
+#          - address: open5gs-upf-pfcp
+#        client:
+#          smf:
+#            - address: open5gs-smf
+    subnetList:
+      - subnet: 10.45.0.1/26
+        dnn: internet
+        dev: ogstun
+        createDev: true
+        enableNAT: true
+
+upf2:
+  config:
+#    logLevel: debug
+#    upf:
+#      pfcp:
+#        server:
+#          - address: open5gs-upf2-pfcp
+#        client:
+#          smf:
+#            - address: open5gs-smf
+    subnetList:
+      - subnet: 10.45.0.65/26
+        dnn: internet2
+        dev: ogstun2
+        createDev: true
+        enableNAT: true
+
+#nrf:
+#  serving:
+#    - plmn_id:
+#        mcc: "999"
+#        mnn: "70"
+
+pcf:
+  config:
+#    logLevel: debug
+
+udm:
+  config:
+#    logLevel: debug
